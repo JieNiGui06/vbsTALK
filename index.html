@@ -17,8 +17,9 @@
                    $("mylabget").value = hq.responseText;
                 }
             }
-            hq.open("GET","2333.php?a=" + $("mylabsend").value + "&myname=" + $("myname").value,true);
-            hq.send();
+            hq.open("POST","2333.php",true);
+            hq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            hq.send("a=" + $("mylabsend").value + "&myname=" + $("myname").value + "&t=" + Math.random().toString());
         }
     </script>
 </head>
