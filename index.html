@@ -17,7 +17,7 @@
                    $("mylabget").value = hq.responseText;
                 }
             }
-            hq.open("POST","2333.php?a=" + $("mylabsend").value + "&myname=" + $("myname").value,true);
+            hq.open("GET","2333.php?a=" + $("mylabsend").value + "&myname=" + $("myname").value,true);
             hq.send();
         }
     </script>
