@@ -1,31 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-
-    <script>
-        function $(mylabget) {
-            return document.getElementById(mylabget);
-        }
-
-        function abc(){
-            var hq = new XMLHttpRequest();
-            hq.onreadystatechange=function (){
-                if (hq.readyState == 4 && hq.status == 200)
-                {
-                   $("mylabget").value = hq.responseText;
-                }
-            }
-            hq.open("GET","2333.php?a=" + $("mylabsend").value + "&myname=" + $("myname").value + "&t=" + Math.random().toString(),true);
-            hq.send();
-        }
-    </script>
+    <title>Product App</title>
 </head>
 <body>
-<input id="mybtn" type="button" onclick="abc()">
-<input id="myname" type="text">
-<input id="mylabsend" type="text">
-<input id="mylabget" type="text">
+
+    <div>
+        <h2>All Products</h2>
+        <ul id="products" />
+    </div>
+    <div>
+        <h2>Search by ID</h2>
+        <input type="text" id="prodId" size="5" />
+        <input type="button" value="Search" onclick="find();" />
+        <p id="product" />
+    </div>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+    var uri = 'api/products';
+
+    $(document).ready(function () {
+      // Send an AJAX request
+      $.getJSON(uri)
+          .done(function (data) {
+            // On success, 'data' contains a list of products.
+            $.each(data, function (key, item) {
+              // Add a list item for the product.
+              $('<li>', { text: formatItem(item) }).appendTo($('#products'));
+            });
+          });
+    });
+
+    function formatItem(item) {
+      return item.Name + ': $' + item.Price;
+    }
+
+    function find() {
+      var id = $('#prodId').val();
+      $.getJSON(uri + '/' + id)
+          .done(function (data) {
+            $('#product').text(formatItem(data));
+          })
+          .fail(function (jqXHR, textStatus, err) {
+            $('#product').text('Error: ' + err);
+          });
+    }
+    </script>
 </body>
 </html>
