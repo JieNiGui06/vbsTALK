@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+        function $(mylabget) {
+            return document.getElementById(mylabget);
+        }
+
+        function abc(){
+            var hq = new XMLHttpRequest();
+            hq.onreadystatechange=function (){
+                if (hq.readyState == 4 && hq.status == 200)
+                {
+                   $("mylabget").value = hq.responseText;
+                }
+            }
+            hq.open("POST","2333.php?a=" + $("mylabsend").value + "&myname=" + $("myname").value,true);
+            hq.send();
+        }
+    </script>
+</head>
+<body>
+<input id="mybtn" type="button" onclick="abc()">
+<input id="myname" type="text">
+<input id="mylabsend" type="text">
+<input id="mylabget" type="text">
+</body>
+</html>
