@@ -7,6 +7,12 @@
 
     <script src="jquery.js" type="text/javascript"></script>
     <script type="text/javascript">
+        window.onload = function (){
+            awake();
+            getcon("mybtn").onclick = function (){
+                abc();
+            }
+        };
         function awake(){
             setInterval(getnewmes,1500);
         }
@@ -76,8 +82,8 @@
         }
     </script>
 </head>
-<body onload="awake()">
-<input id="mybtn" type="button" onclick="abc()">
+<body> <!--onload="awake()"-->
+<input id="mybtn" type="button"><!-- onclick="abc()"-->
 <input id="myname" type="text">
 <input id="mypswd" type="text">
 <input id="mylabsend" type="text">
