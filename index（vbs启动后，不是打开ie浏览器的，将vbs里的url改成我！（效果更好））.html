@@ -34,10 +34,10 @@
             return document.getElementById(id);
         }
 
-        /*async*/ function abc(){
+        async function abc(){
             var mresult;
             // alert(mydata);
-            /*await*/ $.ajax({
+            await $.ajax({
                 url:"http://cloud.bmob.cn/974f094180354da9/talk?name=" + getcon("myname").value + "&password=" + getcon(
                     "mypswd").value + "&word=" + getcon("mylabsend").value,
                 type: 'GET',
@@ -45,49 +45,40 @@
                 jsonp: 'callback',
                 jsonpCallback:"callbackFunction",
                 success:function(result) {
-                    //ie特供mresult = result;
-                    alert("成功");
-                },
-                error:function (result) {
-                    alert("失败了，鬼知道什么问题。");//ie特供
+                    mresult = result;
                 }
             });
-            // 注释以下代码，ie特供版【doge】
-            // 37行，40行，48行，91，92行，71，74，81-83，90行。
-            // if (mresult === "NULL_PE")
-            // {
-            //     addcostm(getcon("myname").value,getcon("mypswd").value);
-            // }
-            // else if(mresult === "NULL_NE")
-            // {
-            //     alert("用户名出现问题。");
-            // }
-            // else
-            // {
-            //     alert("发送成功！");
-            // }
+            if (mresult === "NULL_PE")
+            {
+                addcostm(getcon("myname").value,getcon("mypswd").value);
+            }
+            else if(mresult === "NULL_NE")
+            {
+                alert("用户名出现问题。");
+            }
+            else
+            {
+                alert("发送成功！");
+            }
         }
 
-        /*async*/ function addcostm(mname,mpswd)
+        async function addcostm(mname,mpswd)
         {
             var issuc = false;
-            /*await*/ $.ajax({
+            await $.ajax({
                 url:"http://cloud.bmob.cn/974f094180354da9/add?name=" + mname + "&password=" + mpswd,
                 type: 'GET',
                 dataType: 'jsonp',
                 jsonp: 'callback',
                 jsonpCallback:"callbackFunction",
                 success:function(result) {
-                    // if (result !== "NULL"){
-                    //     issuc = true;
-                    // }
-                    alert("注册成功");
-                },
-                error:function (result) {
-                    alert("或许信息不对（重名）");
+                    if (result !== "NULL"){
+                        issuc = true;
+                    }
+                    // issuc = true;
                 }
             });
-            //alert((issuc?"注册成功！":"失败，或许已有该用户（请检查用户名或密码）。"));
+            alert((issuc?"注册成功！":"失败，或许已有该用户（请检查用户名或密码）。"));
         }
     </script>
 </head>
