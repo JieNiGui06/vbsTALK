@@ -1,51 +1,82 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Product App</title>
-</head>
-<body>
+    <meta charset="UTF-8">
+    <title>Title</title>
 
-    <div>
-        <h2>All Products</h2>
-        <ul id="products" />
-    </div>
-    <div>
-        <h2>Search by ID</h2>
-        <input type="text" id="prodId" size="5" />
-        <input type="button" value="Search" onclick="find();" />
-        <p id="product" />
-    </div>
-
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script src="jquery.js" type="text/javascript"></script>
     <script>
-    var uri = 'api/products';
+        function awake(){
+            setInterval(getnewmes,500);
+        }
 
-    $(document).ready(function () {
-      // Send an AJAX request
-      $.getJSON(uri)
-          .done(function (data) {
-            // On success, 'data' contains a list of products.
-            $.each(data, function (key, item) {
-              // Add a list item for the product.
-              $('<li>', { text: formatItem(item) }).appendTo($('#products'));
+        function getnewmes(){
+            $.ajax({
+                url:"http://cloud.bmob.cn/974f094180354da9/getmess",
+                type: 'GET',
+                dataType: 'jsonp',  // 请求方式为jsonp
+                jsonp: 'callback',
+                success:function(result) {
+                    getcon("mylabget").value = result;
+                }
             });
-          });
-    });
+        }
 
-    function formatItem(item) {
-      return item.Name + ': $' + item.Price;
-    }
+        function getcon(id){
+            return document.getElementById(id);
+        }
 
-    function find() {
-      var id = $('#prodId').val();
-      $.getJSON(uri + '/' + id)
-          .done(function (data) {
-            $('#product').text(formatItem(data));
-          })
-          .fail(function (jqXHR, textStatus, err) {
-            $('#product').text('Error: ' + err);
-          });
-    }
+        async function abc(){
+            var mresult;
+            // alert(mydata);
+            await $.ajax({
+                url:"http://cloud.bmob.cn/974f094180354da9/talk?name=" + getcon("myname").value + "&password=" + getcon(
+                    "mypswd").value + "&word=" + getcon("mylabsend").value,
+                type: 'GET',
+                dataType: 'jsonp',  // 请求方式为jsonp
+                jsonp: 'callback',
+                success:function(result) {
+                    mresult = result;
+                }
+            });
+            if (mresult === "NULL_PE")
+            {
+                addcostm(getcon("myname").value,getcon("mypswd").value);
+            }
+            else if(mresult === "NULL_NE")
+            {
+                alert("用户名出现问题。");
+            }
+            else
+            {
+                alert("发送成功！");
+            }
+        }
+
+        async function addcostm(mname,mpswd)
+        {
+            var issuc = false;
+            await $.ajax({
+                url:"http://cloud.bmob.cn/974f094180354da9/add?name=" + mname + "&password=" + mpswd,
+                type: 'GET',
+                dataType: 'jsonp',
+                jsonp: 'callback',
+                success:function(result) {
+                    if (result !== "NULL"){
+                        issuc = true;
+                    }
+                    // issuc = true;
+                }
+            });
+            alert((issuc?"注册成功！":"失败，或许已有该用户（请检查用户名或密码）。"));
+        }
     </script>
+</head>
+<body onload="awake()">
+<input id="mybtn" type="button" onclick="abc()">
+<input id="myname" type="text">
+<input id="mypswd" type="text">
+<input id="mylabsend" type="text">
+<input id="mylabget" type="text">
 </body>
 </html>
