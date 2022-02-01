@@ -46,7 +46,7 @@
                 jsonpCallback:"callbackFunction",
                 success:function(result) {
                     //ie特供mresult = result;
-                    alert("成功");
+                    alert(result.indexOf("NULL")===-1?"失败！":"成功！");
                 },
                 error:function (result) {
                     alert("失败了，鬼知道什么问题。");//ie特供
@@ -81,7 +81,7 @@
                     // if (result !== "NULL"){
                     //     issuc = true;
                     // }
-                    alert("注册成功");
+                    alert((result!=="NULL"?"注册成功！":"失败，或许已有该用户（请检查用户名或密码）。"));
                 },
                 error:function (result) {
                     alert("或许信息不对（重名）");
