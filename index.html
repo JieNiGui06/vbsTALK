@@ -46,7 +46,7 @@
                 jsonpCallback:"callbackFunction",
                 success:function(result) {
                     //ie特供mresult = result;
-                    alert(result.indexOf("NULL")===-1?"失败！":"成功！");
+                    alert(result.indexOf("NULL")===-1?"成功！":"失败！（或许已有该用户）");
                 },
                 error:function (result) {
                     alert("失败了，鬼知道什么问题。");//ie特供
