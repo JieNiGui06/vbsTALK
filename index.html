@@ -16,6 +16,7 @@
                 type: 'GET',
                 dataType: 'jsonp',  // 请求方式为jsonp
                 jsonp: 'callback',
+                jsonpCallback:"callbackFunction",
                 success:function(result) {
                     getcon("mylabget").value = result;
                 }
@@ -35,6 +36,7 @@
                 type: 'GET',
                 dataType: 'jsonp',  // 请求方式为jsonp
                 jsonp: 'callback',
+                jsonpCallback:"callbackFunction",
                 success:function(result) {
                     mresult = result;
                 }
@@ -61,6 +63,7 @@
                 type: 'GET',
                 dataType: 'jsonp',
                 jsonp: 'callback',
+                jsonpCallback:"callbackFunction",
                 success:function(result) {
                     if (result !== "NULL"){
                         issuc = true;
