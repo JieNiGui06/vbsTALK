@@ -28,14 +28,14 @@
                     var jobj = JSON.parse(JSON.stringify(result));
                     var str = "";
                     getcon("mygetmess").innerText = "";
-                    for (var i of jobj)
+                    for (var i in jobj)
                     {
-                        getcon("mygetmess").innerText += i.toString() + "\r";
-                        for (var i2 of i)
-                        {
-                            str += i2.toString() + "(::)";
-
-                        }
+                        getcon("mygetmess").innerText += jobj[i].toString() + "\r";
+                        // for (var i2 of i)
+                        // {
+                        //     str += i2.toString() + "(::)";
+                        //
+                        // }
                     }
                     getcon("mylabget").value = jobj;
                 }
