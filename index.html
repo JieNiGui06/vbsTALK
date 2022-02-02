@@ -19,7 +19,7 @@
 
         function getnewmes(){
             $.ajax({
-                url:"http://cloud.bmob.cn/974f094180354da9/getmess",
+                url:"http://cloud.bmob.cn/974f094180354da9/getmess?useUnicode=true&characterEncoding=UTF-8",
                 type: 'GET',
                 dataType: 'jsonp',  // 请求方式为jsonp
                 jsonp: 'callback',
@@ -51,7 +51,7 @@
             // alert(mydata);
             /*await*/ $.ajax({
                 url:"http://cloud.bmob.cn/974f094180354da9/talk?name=" + getcon("myname").value + "&password=" + getcon(
-                    "mypswd").value + "&word=" + getcon("mylabsend").value,
+                    "mypswd").value + "&word=" + getcon("mylabsend").value + "&useUnicode=true&characterEncoding=UTF-8",
                 type: 'GET',
                 dataType: 'jsonp',  // 请求方式为jsonp
                 jsonp: 'callback',
@@ -84,7 +84,7 @@
         {
             var issuc = false;
             /*await*/ $.ajax({
-                url:"http://cloud.bmob.cn/974f094180354da9/add?name=" + mname + "&password=" + mpswd,
+                url:"http://cloud.bmob.cn/974f094180354da9/add?name=" + mname + "&password=" + mpswd + "&useUnicode=true&characterEncoding=UTF-8",
                 type: 'GET',
                 dataType: 'jsonp',
                 jsonp: 'callback',
