@@ -19,7 +19,7 @@
 
         function getnewmes(){
             $.ajax({
-                url:"http://cloud.bmob.cn/974f094180354da9/getmess?useUnicode=true&characterEncoding=UTF-8",
+                url:"http://cloud.bmob.cn/974f094180354da9/getmess?",
                 type: 'GET',
                 dataType: 'jsonp',  // 请求方式为jsonp
                 jsonp: 'callback',
@@ -51,7 +51,7 @@
             // alert(mydata);
             /*await*/ $.ajax({
                 url:"http://cloud.bmob.cn/974f094180354da9/talk?name=" + getcon("myname").value + "&password=" + getcon(
-                    "mypswd").value + "&word=" + getcon("mylabsend").value + "&useUnicode=true&characterEncoding=UTF-8",
+                    "mypswd").value + "&word=" + getcon("mylabsend").value,
                 type: 'GET',
                 dataType: 'jsonp',  // 请求方式为jsonp
                 jsonp: 'callback',
@@ -84,7 +84,7 @@
         {
             var issuc = false;
             /*await*/ $.ajax({
-                url:"http://cloud.bmob.cn/974f094180354da9/add?name=" + mname + "&password=" + mpswd + "&useUnicode=true&characterEncoding=UTF-8",
+                url:"http://cloud.bmob.cn/974f094180354da9/add?name=" + mname + "&password=" + mpswd,
                 type: 'GET',
                 dataType: 'jsonp',
                 jsonp: 'callback',
@@ -105,6 +105,7 @@
 </head>
 <body> <!--onload="awake()"-->
 <a>版权所有：杰尼龟；QQ：329125460</a>
+<a href="https://jienigui06.github.io/vbsTALK/index（vbs启动后，不是打开ie浏览器的，将vbs里的url改成我！（效果更好））.html">发送功能请转到非ie环境下进行</a>
 <a href="https://jienigui06.github.io/">我的主页</a>
 <a>您还可以用这个项目保存您的数据（如果你没有数据库）。</a>
 <a href="QQ录屏20220202112730.mp4">点击查看ie浏览器的设置</a>
